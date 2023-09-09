@@ -53,16 +53,16 @@ public class Circle3 {
         System.out.println();
     } // end of main method
 
-    static double computeCircumference(double radius1){
+
+    public static double computeCircumference(double radius1){
         //returning the computed value for circumference of the Circle
         return 2 * Math.PI * radius1;
     }//end of the completeCircumference method
+
 
 
     static double computeArea (double radius2){
         //returning the computed value for area of the Circle
         return Math.PI * radius2 *radius2;
     } // end of the computeArea method
-
-
 } // end of class
