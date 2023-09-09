@@ -3,20 +3,20 @@ Name: Jim Hendrix T. Bag-eo
 Programming Date: 9 /8/2023
 Activity Name and Number: Prelim Programming Exercise 4
 Problem:
- Write a program that computes and shows the area and the circumference of a circle with
- a given radius. Let the radius be entered through the keyboard at program runtime.
+ Write a program that computes and shows the perimeter and the area of a rectangle with
+ a given length and width. Let the length and width be entered through the keyboard at program runtime.
 Analysis:
-Input: Radius of a circle (radius)
+Input: length and width of the rectangle
 Processes:
-Read the radius of the circle
-Compute the circumference of the circle
-Compute the area of the circle
+Read the length and width of the rectangle
+Compute the perimeter of the rectangle
+Compute the area of the rectangle
 Display results
-Output: circumference, area
+Output: perimeter, area
 Algorithm:
 1. Read/Accept the width and length of the rectangle
-2. Compute the perimeter: 2 * ( width + length)
-3. Compute the area: width * length
+2. Compute the perimeter in a different method: 2 * ( width + length)
+3. Compute the area in a different method: width * length
 4. Show the perimeter of the rectangle
 5. Show the area of the rectangle
 */
@@ -45,7 +45,6 @@ public class Rectangle3 {
         length = input.nextDouble();
 
 
-
         perimeter = computePerimeter(width, length);
         area = computeArea(width, length);
 
@@ -60,6 +59,7 @@ public class Rectangle3 {
         System.out.println(" **********************************************************");
         System.out.println();
     } // end of main method
+
 
     static double computePerimeter(double width1, double length1){
         //returning the computed value for perimeter of the rectangle
