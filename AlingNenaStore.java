@@ -1,87 +1,148 @@
-package exercises.prelims;
+/*
+Name: Jim Hendrix T. Bag-eo
+Date of Completion: September 12, 2023
+Class Code and Course Number: 9322B - CS112L
+Algorithm:
+    Initializing:
+        1. Create a Scanner object ('kbd') to read user input.
+        2. Define arrays ('productList') and ('unitPriceList') to store products and their prices.
 
+    Input:
+        Prompt the user to input the following and loop until valid input is read:
+        1. Product
+        2. Quantity
+        3. Discount
+        4. Cash Tendered
+
+    Processes:
+        1. Identify the unitPrice after the Quantity is read.
+        2. Compute the Total Purchase Amount.
+        3. Compute the Total Discount.
+        4. Compute the Amount To Be Paid.
+        5. Compute the Change.
+
+    Output:
+        Display the following:
+        1. Total Purchase Amount
+        2. Total Discount
+        3. Amount To Be Paid
+        4. Change
+*/
+
+package exercises.prelims;
 
 import java.util.Scanner;
 
 public class AlingNenaStore {
     public static void main(String[] args) {
 
-        Scanner kbd = new Scanner (System.in);
+        Scanner kbd = new Scanner(System.in);
 
-        String[] productList = {"eggs", "milk", "sardines"};
+        String[] productList = {"eggs", "milk", "sardines"}; // List of the products
+        double[] unitPriceList = {5.00, 18.75, 23.50}; // List of the prices of the products
 
-        String product = getProduct(productList, kbd);
+        String product = getProduct(kbd, productList);
         int quantity = getQuantity(kbd);
-        double unitPrice = getUnitPrice(product);
-        double purchaseAmount = computePurchaseAmount(unitPrice, quantity);
+        double unitPrice = getUnitPrice(product, productList, unitPriceList);
         double discount = getDiscount(kbd);
         double cashTendered = getCashTendered(kbd);
-        printReceipt(product, quantity, purchaseAmount, discount, cashTendered);
+
+        double totalPurchaseAmount = computeTotalPurchaseAmount(quantity, unitPrice);
+        double totalDiscount = computeTotalDiscount(discount, totalPurchaseAmount);
+        double amountToBePaid = computeAmountToBePaid(totalPurchaseAmount, totalDiscount);
+        double change = computeChange(cashTendered, amountToBePaid);
+
+        printReceipt(totalPurchaseAmount, totalDiscount, amountToBePaid, change);
     }
 
-
-
-    private static String getProduct (String[] productList, Scanner kbd){
-        String product;
-        boolean isProduct = false;
+    private static String getProduct(Scanner kbd, String[] productList) {
         do {
-            System.out.print("product: ");
-            product = kbd.nextLine().toLowerCase().trim();
+            System.out.print("Product: ");
+            String product = kbd.nextLine().toLowerCase().trim();
 
-            for (String i : productList){
-                if (product.equals(i)){
-                    isProduct = false;
-                } else {
-                    System.out.print("\nOur store doesn't sell " + product + " ");
+            for (String i : productList) {
+                if (product.equals(i)) {
+                    return product;
                 }
             }
-            kbd.nextLine();
-        } while (isProduct);
-        return product;
-    }
-
-
-    private static double getUnitPrice(String product) {
-        double unitPrice = 0;
-        switch (product){
-            case "eggs":
-                unitPrice = 5.00;
-                break;
-            case "milk":
-                unitPrice = 18.75;
-                break;
-            case "sardines":
-                unitPrice = 23.50;
-                break;
-        }
-        return unitPrice;
-    }
-
+            System.out.println("\nOur store doesn't sell " + product + " ");
+        } while (true);
+    } // End of the getProduct method
 
     private static int getQuantity(Scanner kbd) {
-        int quantity = 0;
         do {
             System.out.print("Quantity: ");
             if (kbd.hasNextInt()) {
-                quantity = kbd.nextInt();
-                break;
-            } else {
-                System.out.print("\nEnter a valid quantity. ");
+                int quantity = kbd.nextInt();
+                if (quantity > 0) {
+                    return quantity;
+                }
             }
+            System.out.println("\nInvalid input. Please enter a valid quantity. ");
+            kbd.nextLine();
         } while (true);
-        return quantity;
-    }
+    } // End of the getQuantity method
 
-    private static double computePurchaseAmount(Double unitPrice, int quantity) {
-        return (unitPrice * quantity);
-    }
+    private static double getUnitPrice(String product, String[] productList, double[] unitPriceList) {
+        double unitPrice = 0;
+        for (int i = 0; i < productList.length; i++) {
+            if (product.equals(productList[i])) {
+                unitPrice = unitPriceList[i];
+            }
+        }
+        System.out.println("Unit Price: " + unitPrice);
+        return unitPrice;
+    } //End of the getUnitPrice Method
 
-    private static int getDiscount(Scanner kbd) {
-    }
+    private static double getDiscount(Scanner kbd) {
+        do {
+            System.out.print("Discount: ");
+            if (kbd.hasNextDouble()) {
+                double discount = kbd.nextDouble();
+                if (discount >= 0) {
+                    kbd.nextLine();
+                    return discount;
+                }
+            }
+            System.out.println("\nInvalid input. Please enter a valid quantity. ");
+            kbd.nextLine();
+        } while (true);
+    } // End of the getDiscountMethod
 
-    private static int getCashTendered(Scanner kbd) {
-    }
+    private static double getCashTendered(Scanner kbd) {
+        do {
+            System.out.print("Cash Tendered: ");
+            if (kbd.hasNextDouble()) {
+                double cashTendered = kbd.nextDouble();
+                if (cashTendered >= 0) {
+                    return cashTendered;
+                }
+            }
+            System.out.println("\nInvalid input. Please enter a valid Cash Amount. ");
+            kbd.nextLine();
+        } while (true);
+    } // End of the getCashTendered method
 
-    private static void printReceipt(String product, double quantity, double purchaseAmount, double discount, double cashTendered) {
-    }
-}
+    private static double computeTotalPurchaseAmount(int quantity, double unitPrice) {
+        return quantity * unitPrice;
+    } // End of the computeTotalPurchaseAmount method
+
+    private static double computeTotalDiscount(double discount, double totalPurchaseAmount) {
+        return totalPurchaseAmount * (discount / 100);
+    } // End of the computeTotalDiscount method
+
+    private static double computeAmountToBePaid(double totalPurchaseAmount, double totalDiscount) {
+        return totalPurchaseAmount - totalDiscount;
+    } // End of the totalAmountToBePaid method
+
+    private static double computeChange(double cashTendered, double amountToBePaid) {
+        return cashTendered - amountToBePaid;
+    } // End of the computeChange method
+
+    private static void printReceipt(double totalPurchaseAmount, double totalDiscount, double amountToBePaid, double change) {
+        System.out.println("\nTotal Purchase Amount: " + totalPurchaseAmount);
+        System.out.println("Total Discount: " + totalDiscount);
+        System.out.println("Amount To Be Paid: " + amountToBePaid);
+        System.out.print("Change: " + change);
+    } // End of the printReceiptMethod
+} // End of class
