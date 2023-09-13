@@ -47,12 +47,12 @@ public class AlingNenaStore {
         double discount = getDiscount(kbd);
         double cashTendered = getCashTendered(kbd);
 
-        double totalPurchaseAmount = computeTotalPurchaseAmount(quantity, unitPrice);
-        double totalDiscount = computeTotalDiscount(discount, totalPurchaseAmount);
-        double amountToBePaid = computeAmountToBePaid(totalPurchaseAmount, totalDiscount);
-        double change = computeChange(cashTendered, amountToBePaid);
+        double totalPurchaseAmount = computeTotalPurchaseAmount(quantity, unitPrice); //Computes for Total Purchase Amount
+        double totalDiscount = computeTotalDiscount(discount, totalPurchaseAmount); //Computes for Total Discount
+        double amountToBePaid = computeAmountToBePaid(totalPurchaseAmount, totalDiscount); //Computes for Amount To Be Paid
+        double change = computeChange(cashTendered, amountToBePaid); //Computes for Change
 
-        printReceipt(totalPurchaseAmount, totalDiscount, amountToBePaid, change);
+        printReceipt(totalPurchaseAmount, totalDiscount, amountToBePaid, change); //Prints the Output
     }
 
     private static String getProduct(Scanner kbd, String[] productList) {
@@ -66,7 +66,7 @@ public class AlingNenaStore {
                 }
             }
             System.out.println("\nOur store doesn't sell " + product + " ");
-        } while (true);
+        } while (true); //Loop until the kbd reads a Product from the array
     } // End of the getProduct method
 
     private static int getQuantity(Scanner kbd) {
@@ -74,18 +74,18 @@ public class AlingNenaStore {
             System.out.print("Quantity: ");
             if (kbd.hasNextInt()) {
                 int quantity = kbd.nextInt();
-                if (quantity > 0) {
+                if (quantity >= 0 && quantity <= 100) {
                     return quantity;
                 }
             }
             System.out.println("\nInvalid input. Please enter a valid quantity. ");
             kbd.nextLine();
-        } while (true);
+        } while (true); //Loop until the kbd reads a Quantity 1-100
     } // End of the getQuantity method
 
     private static double getUnitPrice(String product, String[] productList, double[] unitPriceList) {
         double unitPrice = 0;
-        for (int i = 0; i < productList.length; i++) {
+        for (int i = 0; i < productList.length; i++) { //Find the Unit Price of the product entered
             if (product.equals(productList[i])) {
                 unitPrice = unitPriceList[i];
             }
@@ -99,14 +99,14 @@ public class AlingNenaStore {
             System.out.print("Discount: ");
             if (kbd.hasNextDouble()) {
                 double discount = kbd.nextDouble();
-                if (discount >= 0) {
+                if (discount >= 0 && discount <= 100) {
                     kbd.nextLine();
                     return discount;
                 }
             }
             System.out.println("\nInvalid input. Please enter a valid quantity. ");
             kbd.nextLine();
-        } while (true);
+        } while (true); //Loop until kbd reads a Discount from 0-100
     } // End of the getDiscountMethod
 
     private static double getCashTendered(Scanner kbd) {
@@ -120,7 +120,7 @@ public class AlingNenaStore {
             }
             System.out.println("\nInvalid input. Please enter a valid Cash Amount. ");
             kbd.nextLine();
-        } while (true);
+        } while (true); //Loops until kbd reads a Valid Cash Amount
     } // End of the getCashTendered method
 
     private static double computeTotalPurchaseAmount(int quantity, double unitPrice) {
@@ -145,4 +145,4 @@ public class AlingNenaStore {
         System.out.println("Amount To Be Paid: " + amountToBePaid);
         System.out.print("Change: " + change);
     } // End of the printReceiptMethod
-} // End of class
+} // End of class88
