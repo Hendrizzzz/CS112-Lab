@@ -74,7 +74,7 @@ public class AlingNenaStore {
             System.out.print("Quantity: ");
             if (kbd.hasNextInt()) {
                 int quantity = kbd.nextInt();
-                if (quantity >= 0 && quantity <= 100) {
+                if (quantity > 0 && quantity <= 100) {
                     return quantity;
                 }
             }
