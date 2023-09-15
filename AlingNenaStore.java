@@ -32,19 +32,21 @@ Algorithm:
 package exercises.prelims;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class AlingNenaStore {
     public static void main(String[] args) {
 
+        Random discountRandom = new Random();
         Scanner kbd = new Scanner(System.in);
 
-        String[] productList = {"eggs", "milk", "sardines"}; // List of the products
-        double[] unitPriceList = {5.00, 18.75, 23.50}; // List of the prices of the products
+        String[] productList = {"eggs", "milk", "sardines", "cooking oil", "vinegar", "garlic", "onion", "salt", "coffee", "corned beef", "pancit canton"}; // List of the products
+        double[] unitPriceList = {5.00, 18.75, 23.50, 10.0, 12.0, 4.5, 3.5, 10.0, 8.0, 19.50, 16.50}; // List of the prices of the products
 
         String product = getProduct(kbd, productList);
         int quantity = getQuantity(kbd);
         double unitPrice = getUnitPrice(product, productList, unitPriceList);
-        double discount = getDiscount(kbd);
+        double discount = getDiscount(discountRandom);
         double cashTendered = getCashTendered(kbd);
 
         double totalPurchaseAmount = computeTotalPurchaseAmount(quantity, unitPrice); //Computes for Total Purchase Amount
@@ -94,19 +96,12 @@ public class AlingNenaStore {
         return unitPrice;
     } //End of the getUnitPrice Method
 
-    private static double getDiscount(Scanner kbd) {
-        do {
-            System.out.print("Discount: ");
-            if (kbd.hasNextDouble()) {
-                double discount = kbd.nextDouble();
-                if (discount >= 0 && discount <= 100) {
-                    kbd.nextLine();
-                    return discount;
-                }
-            }
-            System.out.println("\nInvalid input. Please enter a valid quantity. ");
-            kbd.nextLine();
-        } while (true); //Loop until kbd reads a Discount from 0-100
+    private static double getDiscount(Random discountRandom) {
+
+        int limit = 101;
+        double discount = discountRandom.nextInt(limit); //Generates random numbers for discount
+        System.out.print("Discount: " + discount + "\n");
+        return discount;
     } // End of the getDiscountMethod
 
     private static double getCashTendered(Scanner kbd) {
@@ -140,9 +135,9 @@ public class AlingNenaStore {
     } // End of the computeChange method
 
     private static void printReceipt(double totalPurchaseAmount, double totalDiscount, double amountToBePaid, double change) {
-        System.out.println("\nTotal Purchase Amount: " + totalPurchaseAmount);
-        System.out.println("Total Discount: " + totalDiscount);
-        System.out.println("Amount To Be Paid: " + amountToBePaid);
-        System.out.print("Change: " + change);
+        System.out.printf("%n%nTotal Purchase Amount: %.2f", totalPurchaseAmount);
+        System.out.printf("%nTotal Discount: %.2f", totalDiscount);
+        System.out.printf("%nAmount To Be Paid: %.2f", amountToBePaid);
+        System.out.printf("%nChange: %.2f", change);
     } // End of the printReceiptMethod
 } // End of class88
