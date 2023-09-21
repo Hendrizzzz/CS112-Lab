@@ -1,7 +1,5 @@
-//
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
-//
 
 package exercises.prelims;
 
@@ -10,32 +8,33 @@ import java.util.Scanner;
 public class Rectangle {
     public static void main(String[] args) {
 
-        //declaring variables
+        // Declare variables to store length, width, perimeter, and area
         double length;
         double width;
         double perimeter;
         double area;
 
-        //creating a Scanner method named 'input'
+        // Create a Scanner object named 'input' to read user input
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Welcome to the Perimeter and Area of Rectangle Solver!");
+        System.out.println("Welcome!");
 
-        //Getting the length of the Rectangle from the user
+        // Get the length of the Rectangle from the user
         System.out.print("Please, enter the length of the Rectangle: ");
         length = input.nextDouble();
 
-        //Getting the width of the Rectangle from the user
+        // Get the width of the Rectangle from the user
         System.out.print("Please, enter the width of the Rectangle: ");
         width = input.nextDouble();
 
-        //closing the scanner
+        // Close the scanner to release resources
         input.close();
 
-        //formula for Perimeter and Area of a Rectangle
-        perimeter = (2 * length) + (2*width);
-        area = length * width
-        ;
+        // Calculate the perimeter and area of the Rectangle using formulas
+        perimeter = (2 * length) + (2 * width);
+        area = length * width;
+
+        // Display the results
         System.out.println();
         System.out.println();
         System.out.println(" **********************************************************");
@@ -49,4 +48,3 @@ public class Rectangle {
         System.out.println(" **********************************************************");
     }
 }
-
