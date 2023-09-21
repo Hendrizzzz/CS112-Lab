@@ -2,17 +2,22 @@
 Name: Jim Hendrix T. Bag-eo
 Programming Date: 9 /8/2023
 Activity Name and Number: Prelim Programming Exercise 4
+
 Problem:
  Write a program that computes and shows the area and the circumference of a circle with
  a given radius. Let the radius be entered through the keyboard at program runtime.
+
 Analysis:
-Input: Radius of a circle (radius)
-Processes:
-Read the radius of the circle
-Compute the circumference of the circle
-Compute the area of the circle
-Display results
-Output: circumference, area
+    Input:
+        Radius of a circle (radius)
+    Processes:
+        Read the radius of the circle
+        Compute the circumference of the circle
+        Compute the area of the circle
+        Display results
+    Output:
+        circumference, area
+
 Algorithm:
 1. Read/Accept the radius of the circle
 2. Compute the circumference: circumference = 2 * PI * radius
@@ -30,8 +35,8 @@ public class Circle3 {
     public static void main(String[] args) {
 
         double radius;
-        double circumference = 0;
-        double area = 0;
+        double circumference;
+        double area;
 
 
         Scanner input = new Scanner(System.in);
@@ -54,11 +59,11 @@ public class Circle3 {
     } // end of main method
 
 
+
     public static double computeCircumference(double radius1){
         //returning the computed value for circumference of the Circle
         return 2 * Math.PI * radius1;
     }//end of the completeCircumference method
-
 
 
     static double computeArea (double radius2){
