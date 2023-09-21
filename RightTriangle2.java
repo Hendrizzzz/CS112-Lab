@@ -4,13 +4,18 @@
     Activity Name and Number: Prelim Exercise Number 3
 Problem:
 Write a program that will show the hypotenuse of a Right Triangle with a given base and height.
+
 Analysis:
-Input: base and height of a circle
-Processes: Compute the hypotenuse of the circle
- Display the data associated with the right triangle
-Output: hypotenuse
+    Input:
+        base and height of a Right Triangle
+    Processes:
+        Compute the hypotenuse of the Right Triangle
+        Display the data associated with the right triangle
+    Output:
+        hypotenuse
+
 Algorithm:
-1. Assign the base and height of the circle
+1. Assign the base and height of the Right Triangle
 2. Compute the hypotenuse: hypotenuse = square root of (base*base + height*height)
 3. Show the given base and height of a right triangle
 4. Show the computed hypotenuse of the right triangle with a given base and height
@@ -51,6 +56,6 @@ public class RightTriangle2 {
         System.out.println(" ********************************************************");
         System.out.println(" * Given base = " + base + " and height " + height + " of a right triangle *");
         System.out.println(" * Computed hypotenuse of the circle = " + hypotenuse + " *");
-        System.out.println(" ********************************************************");
+        System.out.print(" ********************************************************");
     } // end of the main method
 } // end of Circle2 class
