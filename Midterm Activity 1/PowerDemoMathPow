@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class PowerDemoMathPow
+{
+    public static void main(String[] args)
+    {
+        Scanner console = new Scanner(System.in);
+
+
+        int base;
+        int power;
+        double result = 1;
+
+
+        System.out.println("Enter the base: ");
+        base = console.nextInt();
+
+        System.out.println("Enter the power: ");
+        power = console.nextInt();
+
+        result = Math.pow(base, power);
+
+        System.out.println(result);
+    } //continue the code
+}
