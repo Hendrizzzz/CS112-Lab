@@ -1,3 +1,14 @@
+/*
+To do:
+
+Write a program to accept 20 integer numbers in a single Dimensional Array. Find and display the
+following:
+i. Number of even numbers.
+ii. Number of odd numbers.
+iii. Number of multiples of 4
+*/
+
+
 package exercises.midterms;
 
 import java.util.Scanner;
@@ -12,11 +23,10 @@ public class MidtermActivity3 {
 
         Scanner kbd = new Scanner(System.in); //Create Scanner Object
 
-        int[] userArray = new int[20]; //Declaration and Initialization of Array
+        int[] userArray = new int[20]; //Declaration and Initialization of Array to 20
 
 
-        //For-loop for accessing and adding values to the array
-        //and
+        //For-loop for accessing and adding values to the array and
         //Determining the number of even, odd and multiple of four integers
         for (int i = 0; i < userArray.length; i++) {
             try {
@@ -28,7 +38,7 @@ public class MidtermActivity3 {
                 } else{     //Odd
                     oddNum++;
                 }
-
+                
                 if (userArray[i] % 4 == 0){ //Multiples of Four
                     fourMultiple++;
                 }
