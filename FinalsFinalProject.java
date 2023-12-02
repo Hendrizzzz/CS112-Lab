@@ -39,23 +39,31 @@ public class FinalProject {
 
 
 
+    // Display the names of the team members
     private static void displayNames() {
         System.out.println("Welcome to our Java Collection ");
-        System.out.println("Bag-eo, Jim Hendrix ");
-        System.out.println("Sambot, Kyle Archilles Zinichi ");
-        System.out.println("Gapuz, Caleb ");
-        System.out.println("Calsado, Glaiza ");
-        System.out.println("Mendoza, Roxxanne ");
-        System.out.print("Angelo, Franz ");
+        String[] names = {
+                "Bag-eo, Jim Hendrix",
+                "Sambot, Kyle Archilles Zinichi",
+                "Gapuz, Caleb",
+                "Calsado, Glaiza",
+                "Mendoza, Roxxanne",
+                "Angelo, Franz"
+        };
+
+        for (String name : names) {
+            System.out.println(name);
+        }
     } // End of Method -> displayNames
 
 
 
 
 
+    // Get the user's choice from the menu
     private static int getUserChoice(Scanner kbd) {
         while (true) {
-            System.out.print("\n\nPress [ENTER] to see Main Menu ");
+            System.out.print("\n\nPress [ENTER] to see Main Menu... ");
             if (kbd.nextLine().isBlank()) {
                 System.out.println("Please choose among the Java Program ");
                 System.out.println("------------------------------------ ");
@@ -94,17 +102,11 @@ public class FinalProject {
 
         while(true) { // Loop until the user inputs an integer
             try {
-                System.out.print("Enter a year: ");
-                year = Integer.parseInt(kbd.nextLine());
-
-                // Check if input is negative
-                if (year < 1) {
-                    System.out.println("Invalid input. Please enter a valid year. \n");
-                    continue;
-                }
+                // Get user input for year with validation
+                year = getPositiveIntegerInput(kbd, "Enter year: ");
 
                 // Check if the year is divisible by 4, but not divisible by 400 to determine leap year.
-                if (year % 4 == 0) if (year % 400 != 0) checker = true;
+                if (year % 4 == 0) if (year % 400 == 0) checker = true;
 
                 System.out.println((checker) ? year + " is a leap year. " : year + " is not a leap year. ");
 
@@ -115,8 +117,22 @@ public class FinalProject {
         }
     } // End of Method -> isLeapYear
 
+    private static int getPositiveIntegerInput(Scanner kbd, String prompt) {
+        while (true) {
+            try {
+                System.out.print(prompt);
+                int input = Integer.parseInt(kbd.nextLine());
 
-
+                if (input >= 0) {
+                    return input;
+                } else {
+                    System.out.println("Invalid input. Please enter a non-negative integer.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+            }
+        }
+    }
 
 
 
@@ -151,14 +167,28 @@ public class FinalProject {
         }
     } // End of Method -> incomeTaxComputation
 
+
+    // Compute income tax based on annual income
     private static double computeIncomeTax(double annualIncome) {
+        final double RATE1 = 0.20;
+        final double RATE2 = 0.25;
+        final double RATE3 = 0.30;
+        final double RATE4 = 0.32;
+        final double RATE5 = 0.35;
+
+        final double THRESHOLD1 = 250000;
+        final double THRESHOLD2 = 400000;
+        final double THRESHOLD3 = 800000;
+        final double THRESHOLD4 = 2000000;
+        final double THRESHOLD5 = 8000000;
+
         // Income Tax computation
-        if(annualIncome < 250000) return 0;
-        else if (annualIncome < 400000) return 0.20 * (annualIncome - 250000);
-        else if (annualIncome < 800000) return 30000 +  (0.25 * (annualIncome - 250000));
-        else if (annualIncome < 2000000) return 130000 + (0.30 * (annualIncome - 250000));
-        else if (annualIncome < 8000000) return 490000 + (0.32 * (annualIncome - 250000));
-        else return 2410000 + (0.35 * (annualIncome - 8000000));
+        if (annualIncome < THRESHOLD1) return 0;
+        else if (annualIncome < THRESHOLD2) return RATE1 * (annualIncome - THRESHOLD1);
+        else if (annualIncome < THRESHOLD3) return 30000 + RATE2 * (annualIncome - THRESHOLD1);
+        else if (annualIncome < THRESHOLD4) return 130000 + RATE3 * (annualIncome - THRESHOLD1);
+        else if (annualIncome < THRESHOLD5) return 490000 + RATE4 * (annualIncome - THRESHOLD1);
+        else return 2410000 + RATE5 * (annualIncome - THRESHOLD5);
     }
 
 
@@ -168,9 +198,9 @@ public class FinalProject {
     // Method to insert an element in an array
     private static void insertElementInArray(Scanner kbd) {
         //Display current program
-        System.out.println("\n---------------------------------------");
+        System.out.println("\n-----------------------------------------");
         System.out.println("Program: Inserting an Element in an Array");
-        System.out.println("---------------------------------------");
+        System.out.println("-----------------------------------------");
 
         //Declare variables
         int[] userArray = new int[10];
@@ -210,7 +240,7 @@ public class FinalProject {
                 insertElementAtIndex(userArray, index, insert);
 
                 // Display the new array
-                System.out.println("Element " + insert + " is successfully added in the array at index " + index + " ");
+                System.out.println("Integer " + insert + " is successfully added in the array at index " + index + " ");
                 System.out.print("\nNew Array: ");
                 displayArray (userArray);
 
@@ -252,7 +282,7 @@ public class FinalProject {
 
         // Declare variables
         int[] userArray = new int[10];
-        int delete;
+        int elementToBeDeleted;
         int numberCount = 0;
         boolean isNumberFound = false;
 
@@ -269,13 +299,13 @@ public class FinalProject {
                 System.out.println("Initial Array: ");
                 displayArray(userArray);
 
-                // Get user input for the element to delete
+                // Get user input for the element to elementToBeDeleted
                 System.out.print("\nEnter an integer to delete: ");
-                delete = Integer.parseInt(kbd.nextLine());
+                elementToBeDeleted = Integer.parseInt(kbd.nextLine());
 
                 // Loop through the array to find and delete the specified element
                 for (int k = 0; k < userArray.length; k++) {
-                    if (delete == userArray[k]) {
+                    if (elementToBeDeleted == userArray[k]) {
                         isNumberFound = true;
                         numberCount++;
 
@@ -294,13 +324,14 @@ public class FinalProject {
                 if(!isNumberFound) System.out.println("Number not found");
                 else {
                     // Display the post-deleted array
+                    System.out.println("Integer " + elementToBeDeleted + " is successfully deleted. ");
                     System.out.println("\nNew Array: ");
                     displayArray(userArray);
                 }
 
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer. ");
+                System.out.println("Invalid input. Please enter a valid integer. \n");
             }
         }
     } // End of Method -> deleteElementInArray
@@ -315,47 +346,26 @@ public class FinalProject {
         System.out.println("---------------------------------------------------------");
 
         // Declare variables
-        int[][] user2dArray;
+        int[][] multiplicationTable;
         int row;
         int column;
 
         while(true) {
             try {
                 // Get user input for rows with validation
-                while(true) {
-                    System.out.print("Rows: ");
-                    row = Integer.parseInt(kbd.nextLine()) + 1;
-
-                    if (row > 0) break;
-                    else System.out.println("Invalid input. Row/s cannot be negative. \n");
-                }
+                row = getPositiveIntegerInput(kbd, "Rows: ");
 
                 //Get user input for columns with validation
-                while (true) {
-                    System.out.print("Columns: ");
-                    column = Integer.parseInt(kbd.nextLine()) + 1;
-
-                    if (column > 0) break;
-                    else System.out.println("Invalid input. Column/s cannot be negative. \n");
-                }
+                column = getPositiveIntegerInput(kbd, "Columns: ");
 
                 // Initialized the 2d array
-                user2dArray = new int [row][column];
+                multiplicationTable = new int [row][column];
 
-                // Filling the 2d array
-                fill2dArray(user2dArray, row, column);
+                // Fill the 2d array
+                populateMultiplicationTable(multiplicationTable, row, column);
 
-                // Printing the 2d Array in Multiplication Table Format
-                for (int k = 0; k < row; k++){
-                    for (int l = 0; l < column; l++){
-                        if (user2dArray[k][l] > 999) System.out.print(user2dArray[k][l] + " ");
-                        else if (user2dArray[k][l] > 99) System.out.print(user2dArray[k][l] + "  ");
-                        else if (user2dArray[k][l] > 9) System.out.print(user2dArray[k][l] + "   ");
-                        else System.out.print(user2dArray[k][l] + "    ");
-                    }
-                    System.out.println();
-                }
-                System.out.flush();
+                // Print the 2d Array in Multiplication Table Format
+                displayMultiplicationTable(multiplicationTable, row, column);
                 break;
             } catch (NumberFormatException e){
                 System.out.println("Invalid input. Please enter a valid integer. \n");
@@ -363,20 +373,33 @@ public class FinalProject {
         }
     } // End of displayMulTable
 
-    private static void fill2dArray(int[][] user2dArray, int row, int column) {
+    private static void populateMultiplicationTable(int[][] multiplicationTable, int row, int column) {
         // Filling the 2d array
         for(int i = 0; i < row; i++){
             for (int j = 0; j < column; j++){
-                if (i == 0) user2dArray [i][j] = j;
+                if (i == 0) multiplicationTable [i][j] = j;
                 if (i > 0) {
                     if (j == 0){
-                        user2dArray[i][j] = i;
+                        multiplicationTable[i][j] = i;
                     }
                     else {
-                        user2dArray[i][j] = user2dArray[i][0] * user2dArray[0][j];
+                        multiplicationTable[i][j] = multiplicationTable[i][0] * multiplicationTable[0][j];
                     }
                 }
             }
+        }
+    }
+
+    private static void displayMultiplicationTable(int[][] multiplicationTable, int row, int column) {
+        // Display the multiplication table with proper formatting
+        for (int k = 0; k < row; k++){
+            for (int l = 0; l < column; l++){
+                if (multiplicationTable[k][l] > 999) System.out.print(multiplicationTable[k][l] + " ");
+                else if (multiplicationTable[k][l] > 99) System.out.print(multiplicationTable[k][l] + "  ");
+                else if (multiplicationTable[k][l] > 9) System.out.print(multiplicationTable[k][l] + "   ");
+                else System.out.print(multiplicationTable[k][l] + "    ");
+            }
+            System.out.println();
         }
     }
 
@@ -390,7 +413,6 @@ public class FinalProject {
         System.out.println("------------------------------------");
 
         //Declare variables
-        char[] letterArray;
         boolean isValidWord = false;
         String word = "";
         StringBuilder noVowelWord = new StringBuilder();
@@ -399,34 +421,27 @@ public class FinalProject {
         while (!isValidWord) {
             // Prompt the user to enter a word
             System.out.print("Enter a word: ");
-            word = kbd.nextLine();
+            word = kbd.nextLine().trim();
 
             // Validate if the input consists only letters
             if (word.matches("[a-zA-Z]+")) isValidWord = true;
 
             // Display if invalid
-            if (!isValidWord) System.out.println("Invalid input. Please enter only letters. ");
+            if (!isValidWord) System.out.println("Invalid input. Please enter a valid word. ");
         }
 
-        // Place all the letters in an array
-        letterArray = word.toCharArray();
-
-        // Iterate the array and check if the element is vowel, if so then replace it with blank
-        for(int i = 0; i < letterArray.length; i++) {
-            if (letterArray[i] == 'a' || letterArray[i] == 'e' || letterArray[i] == 'i' ||
-                letterArray[i] == 'o' || letterArray[i] == 'u' || letterArray[i] == 'A' ||
-                letterArray[i] == 'E' || i == 'I' || letterArray[i] == 'O' || letterArray[i] == 'U')   {
-                letterArray[i] = ' '; // Replace it with Empty Character
+        // Iterate the word and check if the character is a vowel, if so, skip it
+        for (char c : word.toCharArray()) {
+            if ("aeiouAEIOU".indexOf(c) == -1) {
+                noVowelWord.append(c);
             }
         }
 
-        // Iterate the array then append to the StringBuilder
-        for(char j : letterArray){
-            if (j != ' ') noVowelWord.append(j); // If blank character, then do not append
-        }
-
-        System.out.println("New Word: " + noVowelWord.toString().trim());
+        System.out.println("New Word: " + noVowelWord);
     } // End of Method -> removeVowels
+
+
+
 
     private static void removeDupLetters(Scanner kbd) {
         //Display current program
@@ -434,44 +449,42 @@ public class FinalProject {
         System.out.println("Program: Remove Duplicate Letters");
         System.out.println("------------------------------------");
 
-        //Declare variables
+        // Declare variables
         String text;
-        char[] charArray;
-        char temp;
+        StringBuilder newText = new StringBuilder();
 
         // Get user input for text
         System.out.print("Enter a text: ");
         text = kbd.nextLine();
 
-        // Store it in an array char per char
-        charArray = text.toCharArray();
+        // Iterate through the characters in the input text
+        for (int i = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
 
-        // Iterate the array of characters
-        for (int i = 0; i < charArray.length; i++){
+            // Check if the character is a letter
+            if (Character.isLetter(currentChar)) {
+                boolean isDuplicate = false;
 
-            //Check if the character is not a letter
-            if (!Character.isLetter(charArray[i])) continue; // We can also use 'Character.isCharacter(charArray[i]) or Character.toString(myChar).matches("[a-zA-Z]")
-
-            //iterate to check if there is a duplicate
-            for (int j = 0; j < charArray.length; j++){
-                // End this one iteration j = i (which is equal to its self)
-                if (j == i) continue;
-
-                // Check if there is a duplicate then iterate through the word to replace default values to the letters
-                if (charArray[i] == charArray[j]) {
-                    temp = charArray[j];
-                    for (int k = 0; k < charArray.length; k++){
-                        if (temp  == charArray[k]) charArray[k] = '\u0000';
+                // Check if the letter has already been seen
+                for (int j = 0; j < i; j++) {
+                    if (Character.isLetter(text.charAt(j)) && text.charAt(j) == currentChar) {
+                        isDuplicate = true;
+                        break;
                     }
                 }
+
+                // If not a duplicate, append it to the new text
+                if (!isDuplicate) {
+                    newText.append(currentChar);
+                }
+            } else {
+                // If not a letter, append it directly to the new text
+                newText.append(currentChar);
             }
         }
-        
-        //Iterate the char array and text without duplicate letters
-        System.out.print("New Text: ");
-        for (char a : charArray){
-            if (a != '\u0000') System.out.print(a);
-        }
+
+        // Display the text without duplicate letters
+        System.out.println("New Text: " + newText);
     } // End of Method -> removeDuplicateLetters
 
 } // End of the class
