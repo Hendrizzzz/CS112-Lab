@@ -153,7 +153,10 @@ public class FinalProject {
 
         while(true){
             try{
+                // Get user input for annual income with validation
                 annualIncome = getPositiveIntegerInput(kbd, "Enter annual income: ");
+
+                // Calculate annual income tax 
                 calculatedIncomeTax = computeIncomeTax(annualIncome);
 
                 System.out.println("Income Tax: " + calculatedIncomeTax);
