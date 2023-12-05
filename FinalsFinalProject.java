@@ -8,7 +8,7 @@ public class FinalProject {
 
         int choice;
 
-        displayNames();
+        displayTeamMemberNames();
         Scanner kbd = new Scanner(System.in);
 
         while(true){
@@ -37,28 +37,20 @@ public class FinalProject {
 
 
 
-    
 
     // Display the names of the team members
-    private static void displayNames() {
+    private static void displayTeamMemberNames() {
         System.out.println("Welcome to our Java Collection ");
-        String[] names = {
-                "Bag-eo, Jim Hendrix",
-                "Sambot, Kyle Archilles Zinichi",
-                "Gapuz, Caleb",
-                "Calsado, Glaiza",
-                "Mendoza, Roxxanne",
-                "Angelo, Franz"
-        };
-
-        for (String name : names) {
-            System.out.println(name);
-        }
+        System.out.println("Bag-eo, Jim Hendrix");
+        System.out.println("Sambot, Kyle Archilles Zinichi");
+        System.out.println("Gapuz, Caleb");
+        System.out.println("Calsado, Glaiza");
+        System.out.println("Mendoza, Roxxanne");
+        System.out.println("Angelo, Franz");
     } // End of Method -> displayNames
 
 
 
-    
 
 
     // Get the user's choice from the menu
@@ -90,8 +82,19 @@ public class FinalProject {
 
 
 
+
+
+
     
 
+    /*
+    Pseudocode: isLeapYear()
+
+    1. Get user input for year with validation
+    2. Check if leap year
+    3. Display if leap year or not
+
+     */
     private static void isLeapYear(Scanner kbd) {
         // Display current program
         System.out.println("\n-------------------------------------------");
@@ -138,9 +141,20 @@ public class FinalProject {
 
 
 
+
     
 
 
+
+    
+
+/*
+Pseudocode: incomeTaxComputation()
+
+1. Get user input for annualIncomeTax with validation
+2. Compute annual income tax
+3. Display annual income tax
+ */
     private static void incomeTaxComputation(Scanner kbd) {
         //Display current program
         System.out.println("\n-------------------------------");
@@ -153,10 +167,7 @@ public class FinalProject {
 
         while(true){
             try{
-                // Get user input for annual income with validation
                 annualIncome = getPositiveIntegerInput(kbd, "Enter annual income: ");
-
-                // Calculate annual income tax 
                 calculatedIncomeTax = computeIncomeTax(annualIncome);
 
                 System.out.println("Income Tax: " + calculatedIncomeTax);
@@ -166,6 +177,7 @@ public class FinalProject {
             }
         }
     } // End of Method -> incomeTaxComputation
+
 
     // Compute income tax based on annual income
     private static double computeIncomeTax(double annualIncome) {
@@ -192,8 +204,25 @@ public class FinalProject {
 
 
 
+
+
+
+
+
     
 
+/*
+Pseudocode: insertElementInArray()
+
+1. Create an array and fill through for loop
+2. Display the pre-inserted array
+3. Get user input for an element to insert
+4. Get user input for index to insert it to, with validation
+5. Call a method to insert the element at index k
+    - Just shift the elements to the left, through for loop start from the last element until the index k
+    - Set the index k to the element given
+6. Display the post-inserted array (same method called with number 2)
+ */
 
     // Method to insert an element in an array
     private static void insertElementInArray(Scanner kbd) {
@@ -274,6 +303,26 @@ public class FinalProject {
 
 
 
+
+
+
+    
+
+/*
+Pseudocode: deleteElementInArray()
+
+1. Create an array and fill through for loop
+2. Display the pre-deleted array
+3. Get user input for an element to delete
+5. Through for loop;
+    if number is found
+        - shift the elements to left starting from the last element until the index of the elementToBeDeleted
+        - then set the last value - numberCount to be 0
+    if not
+        -display not found
+6. Display the post-deleted array (same method called with number 2)
+ */
+
     // Method to delete an element from an array
     private static void deleteElementInArray(Scanner kbd) {
         //Display current program
@@ -341,7 +390,20 @@ public class FinalProject {
 
 
 
+
+
     
+
+
+/*
+Pseudocode: displayMulTable()
+
+1. Get rows and columns with validation
+2. Create a 2d array with sizes of rows + 1 and columns + 1 entered
+3. Populate the 2d array by rows
+5. Display the 2d array in multiplication table format with spacing
+ */
+
     private static void displayMulTable(Scanner kbd) {
         //Display current program
         System.out.println("\n---------------------------------------------------------");
@@ -391,6 +453,7 @@ public class FinalProject {
         }
     }
 
+
     private static void displayMultiplicationTable(int[][] multiplicationTable, int row, int column) {
         // Display the multiplication table with proper formatting
         for (int k = 0; k < row; k++){
@@ -407,9 +470,20 @@ public class FinalProject {
 
 
 
-
     
 
+
+
+/*
+Pseudocode: removeVowels()
+1. Create a StringBuilder
+2. Get word with validation
+3. Iterate through the word letter by letter{
+        if vowel, then don't add it in the StringBuilder
+        if not vowel, then add it in the StringBuilder
+    }
+4. Display the new word without vowels
+*/
     private static void removeVowels(Scanner kbd) {
         //Display current program
         System.out.println("\n------------------------------------");
@@ -449,7 +523,25 @@ public class FinalProject {
 
 
 
+
+
+
+
     
+/*
+Pseudocode: removeDupLetters()
+
+1. Get user input for text
+2. Iterate through the text character per character
+    -if it is a letter{
+        {-then iterate again through the characters to check if there is a duplicate in the past characters
+            -if there is a duplicate don't add
+            - else if no duplicate is found then add
+        }
+    }
+    - else if not a letter then just add (like numbers or symbols)
+3. Display the new text
+*/
     private static void removeDupLetters(Scanner kbd) {
         // Display current program
         System.out.println("\n------------------------------------");
@@ -474,7 +566,7 @@ public class FinalProject {
             if (Character.isLetter(currentChar)) {
                 // Check if the letter has already been seen
                 for (int j = 0; j < i; j++) {
-                    if (Character.isLetter(text.charAt(j)) && text.charAt(j) == currentChar) {
+                    if (text.charAt(j) == currentChar) {
                         duplicate = true;
                         break;
                     }
