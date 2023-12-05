@@ -212,18 +212,31 @@ Pseudocode: incomeTaxComputation()
     
 
 /*
-Pseudocode: insertElementInArray()
+Flowchart: insertElementInArray()
 
-1. Create an array and fill through for loop
-2. Display the pre-inserted array
-3. Get user input for an element to insert
-4. Get user input for index to insert it to, with validation
-5. Call a method to insert the element at index k
-    - Just shift the elements to the left, through for loop start from the last element until the index k
-    - Set the index k to the element given
-6. Display the post-inserted array (same method called with number 2)
- */
+1. Initialize variables:
+   - Create an array `userArray` of size 10
+   - Declare variables `insert`, `index`, `validIndex` (boolean)
 
+2. Generate random values for each element in `userArray` using a for loop
+
+3. Display the pre-inserted array using the `displayArray` method
+
+4. Get user input for the element to insert (`insert`):
+   - Prompt the user for an integer
+   - Use a try-catch block to handle NumberFormatException:
+     - If input is not a valid integer, display an error message and ask for input again
+
+6. Get user input for the index to insert the element (`index`) with validation:
+   - Use a while loop to repeatedly prompt the user until a valid index is entered
+   - Validate the index to be between 0 and 9 (inclusive)
+
+7. Call the `insertElementAtIndex` method to insert the element at the specified index
+
+8. Display a success message indicating the insertion, and display the updated array using the `displayArray` method
+
+Program End
+*/
     // Method to insert an element in an array
     private static void insertElementInArray(Scanner kbd) {
         //Display current program
@@ -309,18 +322,37 @@ Pseudocode: insertElementInArray()
     
 
 /*
-Pseudocode: deleteElementInArray()
+Flowchart: deleteElementInArray()
 
-1. Create an array and fill through for loop
-2. Display the pre-deleted array
-3. Get user input for an element to delete
-5. Through for loop;
-    if number is found
-        - shift the elements to left starting from the last element until the index of the elementToBeDeleted
-        - then set the last value - numberCount to be 0
-    if not
-        -display not found
-6. Display the post-deleted array (same method called with number 2)
+1. Initialize variables:
+   - Create an array `userArray` of size 10
+   - Declare variables `elementToBeDeleted`, `numberCount`, `numberFound` (boolean)
+
+2. Generate random values for each element in `userArray` using a for loop
+
+3. Display the pre-deleted array using the `displayArray` method
+
+4. Get user input for the element to delete (`elementToBeDeleted`):
+   - Prompt the user for an integer
+   - Use a try-catch block to handle NumberFormatException:
+     - If input is not a valid integer, display an error message and ask for input again
+
+5. Loop through the array to find and delete the specified element:
+   - For each element in the array:
+     - If the element matches `elementToBeDeleted`:
+       - Set `numberFound` to true
+       - Increment `numberCount`
+       - Shift elements to the left starting from the current index to the last element
+       - Set the last element to 0
+       - Decrement the loop index to recheck the current position
+
+6. If `numberFound` is false, display "Number not found"
+
+7. If `numberFound` is true:
+   - Display a success message indicating the deletion
+   - Display the updated array using the `displayArray` method
+
+Program End
  */
 
     // Method to delete an element from an array
@@ -396,12 +428,27 @@ Pseudocode: deleteElementInArray()
 
 
 /*
-Pseudocode: displayMulTable()
+Flowchart: displayMulTable()
 
-1. Get rows and columns with validation
-2. Create a 2d array with sizes of rows + 1 and columns + 1 entered
-3. Populate the 2d array by rows
-5. Display the 2d array in multiplication table format with spacing
+1. Initialize variables:
+   - Declare 2D array `multiplicationTable`
+   - Declare variables `row` and `column`
+
+2. Get user input for rows and columns with validation:
+   - Prompt the user for the number of rows with validation
+   - Prompt the user for the number of columns with validation
+
+3. Declare and initialize the 2D array `multiplicationTable` with sizes (row + 1) and (column + 1)
+
+4. Populate the 2D array using the `populateMultiplicationTable` method:
+   - Iterate through rows and columns
+   - Fill the array based on multiplication table logic
+
+5. Display the multiplication table using the `displayMultiplicationTable` method:
+   - Iterate through the 2D array
+   - Format and print each element with proper spacing
+
+Program End
  */
 
     private static void displayMulTable(Scanner kbd) {
@@ -475,15 +522,26 @@ Pseudocode: displayMulTable()
 
 
 /*
-Pseudocode: removeVowels()
-1. Create a StringBuilder
-2. Get word with validation
-3. Iterate through the word letter by letter{
-        if vowel, then don't add it in the StringBuilder
-        if not vowel, then add it in the StringBuilder
-    }
-4. Display the new word without vowels
+Flowchart: removeVowels()
+
+1. Initialize variables:
+   - Declare a StringBuilder `noVowelWord`
+   - Declare a boolean `validWord` and a String `word`
+
+2. Get user input for a word with validation:
+   - Use a while loop to repeatedly prompt the user until a valid word is entered
+   - Validate that the input consists only of letters (using regex)
+
+3. Iterate through the word letter by letter:
+   - For each character in the word:
+     - Check if the character is a vowel (using indexOf)
+     - If it is not a vowel, append it to the `noVowelWord` StringBuilder
+
+4. Display the new word without vowels (`noVowelWord`)
+
+Program End
 */
+
     private static void removeVowels(Scanner kbd) {
         //Display current program
         System.out.println("\n------------------------------------");
@@ -531,16 +589,26 @@ Pseudocode: removeVowels()
 /*
 Pseudocode: removeDupLetters()
 
-1. Get user input for text
-2. Iterate through the text character per character
-    -if it is a letter{
-        {-then iterate again through the characters to check if there is a duplicate in the past characters
-            -if there is a duplicate don't add
-            - else if no duplicate is found then add
-        }
-    }
-    - else if not a letter then just add (like numbers or symbols)
-3. Display the new text
+1. Initialize variables:
+   - Declare a StringBuilder `newText`
+   - Declare a boolean `duplicate`
+
+2. Get user input for text
+
+3. Iterate through the characters in the input text:
+   - For each character in the text:
+     - Set `duplicate` to false
+
+     - Check if the character is a letter:
+       - For each preceding character in the text:
+         - If a duplicate is found, set `duplicate` to true and break out of the loop
+         - If no duplicate is found, append the character to the `newText`
+
+     - If the character is not a letter, append it directly to the `newText`
+
+4. Display the text without duplicate letters (`newText`)
+
+Program End
 */
     private static void removeDupLetters(Scanner kbd) {
         // Display current program
